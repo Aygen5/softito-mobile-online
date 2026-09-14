@@ -1,0 +1,18 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build & Dependency artifacts
+node_modules/
+dist/
+build/
+.gradle/
+*.log
+*.tmp
