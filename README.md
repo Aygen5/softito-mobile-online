@@ -1,5 +1,8 @@
 # Softito Mobil Online
 
+![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 Bu depo, Softito Mobil Online eğitim ve proje çalışmaları kapsamında geliştirilen kodlar, ödevler ve pratik uygulamalar için oluşturulmuştur.
 
 ## 📱 İçerik ve Amaç
