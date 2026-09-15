@@ -1,3 +1,5 @@
+// Bu kod, siparis sistemindeki SOLID ihlallerini (LSP, SRP, OCP, DIP, ISP) cozmek icin refactor edilmistir.
+
 // Urun modelleri (LSP cozumu)
 abstract class Urun {
   final String id;
