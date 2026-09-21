@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longchamp Le Pliage Original El Çantası M</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #b45309;
+            --accent-hover: #92400e;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 32px;
+            box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .price-box {
+            text-align: right;
+        }
+
+        .price-tag {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .price-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .product-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .product-hero {
+                grid-template-columns: 1fr;
+            }
+            .price-box {
+                text-align: left;
+            }
+        }
+
+        .image-wrapper {
+            background: #f8fafc;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .image-wrapper img:hover {
+            transform: scale(1.03);
+        }
+
+        .hero-details {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .spec-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pill {
+            background: #f1f5f9;
+            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .stock-box {
+            background: #fffbeb;
+            border: 1px solid #fef3c7;
+            padding: 16px 20px;
+            border-radius: 12px;
+        }
+
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #92400e;
+        }
+
+        meter {
+            width: 100%;
+            height: 20px;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .stock-hint {
+            font-size: 12px;
+            color: #b45309;
+            margin-top: 6px;
+            display: block;
+        }
+
+        .action-area {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .btn-modal {
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+        }
+
+        .btn-modal:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+        }
+
+        .btn-buy {
+            background: var(--accent);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-buy:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .media-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .media-header {
+            padding: 12px 16px;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .media-content {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000000;
+        }
+
+        .media-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .media-content video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        details {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 18px;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        details[open] {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+        }
+
+        summary {
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            color: var(--primary);
+            list-style-position: inside;
+        }
+
+        summary:hover {
+            color: var(--accent);
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 520px;
+            width: 90%;
+            margin: auto;
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+        }
+
+        dialog::backdrop {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .modal-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .modal-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-table td:first-child {
+            font-weight: 700;
+            color: var(--text-main);
+            width: 40%;
+            background: #f8fafc;
+        }
+
+        .modal-table td:last-child {
+            color: var(--text-muted);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-close {
+            background: #e2e8f0;
+            color: var(--text-main);
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-close:hover {
+            background: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="product-card">
+            
+            <div class="header-section">
+                <div>
+                    <span class="brand-badge">Longchamp Paris &bull; Orijinal Koleksiyon</span>
+                    <h1>Le Pliage Original El Çantası M</h1>
+                </div>
+                <div class="price-box">
+                    <span class="price-tag">5.450 TL</span>
+                    <span class="price-sub">KDV Dahil &bull; Ücretsiz Kargo</span>
+                </div>
+            </div>
+
+            <div class="product-hero">
+                <div class="image-wrapper">
+                    <img src="https://cdn-longchamp.sm.mncdn.com/mnresize/850/-/content/images/thumbs/684c034b5a7ac29dbd605b75_le-pliage-original-el-cantasi-m.png" alt="Longchamp Le Pliage Original El Çantası M">
+                </div>
+                <div class="hero-details">
+                    <p class="description">
+                        Japon origami sanatından ilham alınarak yaratılan Le Pliage, hafifliği ve katlanabilir pratikliğiyle dünya çapında bir ikon haline gelmiştir. Dayanıklı geri dönüştürülmüş poliamid gövdesi ve asil Rus derisi bitişleriyle günlük zarafetin simgesidir.
+                    </p>
+
+                    <div class="spec-pills">
+                        <span class="pill">Boyut: Medium (M)</span>
+                        <span class="pill">Renk: Lacivert</span>
+                        <span class="pill">Su İtici Kaplama</span>
+                        <span class="pill">Hakiki Deri Kulplar</span>
+                    </div>
+
+                    <div class="stock-box">
+                        <div class="stock-header">
+                            <span>Stok Durumu</span>
+                            <span>Son 6 Adet Kaldı!</span>
+                        </div>
+                        <meter id="stokDurumu" min="0" max="50" low="10" high="35" optimum="40" value="6"></meter>
+                        <span class="stock-hint">Kritik stok seviyesinde: Tarayıcı seviyeyi otomatik olarak uyarı rengiyle gösterir.</span>
+                    </div>
+
+                    <div class="action-area">
+                        <button class="btn-modal" onclick="document.getElementById('detayModal').showModal()">Detaylı Bilgi Al</button>
+                        <button class="btn-buy" onclick="alert('Ürün sepetinize eklendi!')">Sepete Ekle</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">Tanıtım ve Kullanım Videoları</div>
+            <div class="video-grid">
+                <div class="media-card">
+                    <div class="media-header">Resmi Tanıtım Videosu (YouTube İframe)</div>
+                    <div class="media-content">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/trNTA9eVHcg?si=uNI4FG5IP8UEGNzr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <div class="media-header">Detay İnceleme (Yerel HTML5 Video)</div>
+                    <div class="media-content">
+                        <video playsinline controls preload="metadata">
+                            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                            Tarayıcınız video etiketini desteklemiyor.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 28px;">
+                <div class="section-title">Sıkça Sorulan Sorular</div>
+                <div class="faq-list">
+                    <details open>
+                        <summary>Le Pliage çantası suya ve yağmura karşı dayanıklı mıdır?</summary>
+                        <p>Evet, Le Pliage modelleri iç yüzeyinde koruyucu kaplama bulunan dayanıklı poliamid kanvas kumaştan üretilmiştir. Yağmur ve su sıçramalarına karşı içindeki eşyaları güvenle korur.</p>
+                    </details>
+                    <details>
+                        <summary>Katlanabilir origami özelliği nasıl çalışır?</summary>
+                        <p>Çanta kullanılmadığında yan kanatlarından içe doğru katlanır, taban kısmı yukarı sarılır ve arka çıtçıtı ön deri kapakla birleştirilerek defter boyutuna kadar küçülebilir.</p>
+                    </details>
+                    <details>
+                        <summary>Deri aksamların ve kanvas kumaşın bakımı nasıl yapılmalıdır?</summary>
+                        <p>Deri kulplar ve kapak renksiz deri besleyici kremlerle temizlenebilir. Kanvas gövde ise ılık su ve nötr sabunlu nemli bir bezle nazikçe silinmelidir. Çamaşır makinesinde yıkanmamalıdır.</p>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <dialog id="detayModal">
+        <div class="modal-header">
+            <h3>Ürün Teknik Detayları</h3>
+        </div>
+        <table class="modal-table">
+            <tbody>
+                <tr>
+                    <td>Model Kodu</td>
+                    <td>L1623089P68</td>
+                </tr>
+                <tr>
+                    <td>Boyutlar</td>
+                    <td>30 cm (G) x 28 cm (Y) x 20 cm (D)</td>
+                </tr>
+                <tr>
+                    <td>Ana Gövde</td>
+                    <td>Geri dönüştürülmüş poliamid kanvas</td>
+                </tr>
+                <tr>
+                    <td>Deri Aksam</td>
+                    <td>Kahverengi Rus derisi (Sığır derisi)</td>
+                </tr>
+                <tr>
+                    <td>Kapanış Tipi</td>
+                    <td>Fermuar ve metal Longchamp binicili çıtçıt</td>
+                </tr>
+                <tr>
+                    <td>Ağırlık</td>
+                    <td>240 gram (Ultra hafif)</td>
+                </tr>
+                <tr>
+                    <td>Menşei</td>
+                    <td>Fransa</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal-actions">
+            <button class="btn-close" onclick="document.getElementById('detayModal').close()">Kapat</button>
+        </div>
+    </dialog>
+
+</body>
+</html>
