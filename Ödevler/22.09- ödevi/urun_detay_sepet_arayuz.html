@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobil Uyumlu E-Ticaret Ürün Detay & Sepet Arayüzü</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #faf7f2 0%, #f4ede4 50%, #eee3d6 100%);
+            color: #3d2f2a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            background: #ffffff;
+            position: relative;
+            box-shadow: 0 20px 50px -10px rgba(120, 95, 85, 0.12);
+            padding-bottom: 105px;
+        }
+
+        .mobile-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #f0e6de;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid #ebdcd3;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 15px;
+            color: #5c4740;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 5px rgba(90, 70, 60, 0.04);
+        }
+
+        .header-btn:hover {
+            transform: scale(1.08);
+            background: #fdf6f0;
+            border-color: #d6b5a8;
+            color: #a86960;
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #4a3832;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .product-media {
+            position: relative;
+            width: 100%;
+            height: 390px;
+            background: radial-gradient(circle at 50% 60%, #ffffff 25%, #fbf3ec 70%, #f3e5d8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #f2e9e1;
+        }
+
+        .product-image {
+            max-width: 75%;
+            max-height: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 16px 24px rgba(110, 80, 70, 0.15));
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-media:hover .product-image {
+            transform: scale(1.06) translateY(-4px);
+        }
+
+        .badge-discount {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: linear-gradient(135deg, #df9b91 0%, #c97e74 100%);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(201, 126, 116, 0.3);
+            z-index: 10;
+            text-transform: uppercase;
+        }
+
+        .badge-shipping {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: linear-gradient(135deg, #9bb8a6 0%, #7d9e8a 100%);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(125, 158, 138, 0.3);
+            z-index: 10;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-rating {
+            position: absolute;
+            bottom: 16px;
+            left: 18px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #5c4740;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 3px 10px rgba(90, 70, 60, 0.06);
+            border: 1px solid #ede1d8;
+        }
+
+        .product-body {
+            padding: 24px 20px;
+        }
+
+        .collection-tag {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #b37367;
+            margin-bottom: 6px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            font-weight: 600;
+            color: #382924;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .product-tagline {
+            font-size: 13.5px;
+            color: #7d6860;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .price-card {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding: 14px 18px;
+            background: #faf4ee;
+            border-radius: 16px;
+            border: 1px solid #ede0d4;
+            margin-bottom: 24px;
+        }
+
+        .current-price {
+            font-size: 26px;
+            font-weight: 700;
+            color: #523730;
+            letter-spacing: -0.5px;
+        }
+
+        .old-price {
+            font-size: 15px;
+            color: #a8948c;
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+
+        .saving-tag {
+            font-size: 11px;
+            font-weight: 700;
+            background: #df9b91;
+            color: #ffffff;
+            padding: 4px 9px;
+            border-radius: 8px;
+            margin-left: auto;
+        }
+
+        .section-label {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #4a3832;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-sublabel {
+            font-size: 12px;
+            font-weight: 600;
+            color: #b37367;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .chip-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .chip-input {
+            display: none;
+        }
+
+        .chip {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: #fbf7f4;
+            border: 1.5px solid #e8dbd1;
+            font-size: 13px;
+            font-weight: 600;
+            color: #5c4740;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .chip-color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+        }
+
+        .chip:hover {
+            border-color: #c97e74;
+            background: #fdf5f0;
+            color: #a86960;
+            transform: translateY(-2px);
+        }
+
+        .chip-input:checked + .chip {
+            background: #6e4c43;
+            color: #ffffff;
+            border-color: #6e4c43;
+            box-shadow: 0 4px 12px rgba(110, 76, 67, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .chip-input:checked + .chip .chip-color-dot {
+            box-shadow: 0 0 0 2px #ffffff;
+        }
+
+        .size-chip-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .size-chip {
+            padding: 8px 15px;
+            border-radius: 12px;
+            background: #ffffff;
+            border: 1.5px solid #e8dbd1;
+            font-size: 13px;
+            font-weight: 600;
+            color: #5c4740;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .size-chip:hover {
+            border-color: #c97e74;
+            color: #a86960;
+        }
+
+        .size-input:checked + .size-chip {
+            border-color: #b37367;
+            background: #faf2ec;
+            color: #a86960;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .feature-box {
+            background: #fdfaf6;
+            border: 1px solid #eee1d5;
+            border-radius: 14px;
+            padding: 12px 6px;
+            text-align: center;
+            transition: transform 0.25s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-3px);
+            border-color: #dbc3b3;
+            background: #ffffff;
+        }
+
+        .feature-icon {
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
+
+        .feature-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #5c4740;
+            line-height: 1.3;
+        }
+
+        .shipping-banner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f3f7f4;
+            border: 1px solid #d0e0d5;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 12.5px;
+            color: #3b5f48;
+        }
+
+        .shipping-banner strong {
+            font-weight: 700;
+        }
+
+        .bottom-action-bar {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid #f0e6de;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 200;
+            box-shadow: 0 -8px 25px rgba(90, 70, 60, 0.05);
+        }
+
+        .bar-price-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bar-price-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #8f7971;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bar-price-value {
+            font-size: 21px;
+            font-weight: 700;
+            color: #382924;
+            letter-spacing: -0.5px;
+        }
+
+        .bar-price-tax {
+            font-size: 10.5px;
+            color: #558564;
+            font-weight: 600;
+        }
+
+        .bar-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-cart {
+            background: linear-gradient(135deg, #c48378 0%, #aa675d 100%);
+            color: #ffffff;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 6px 18px -2px rgba(170, 103, 93, 0.35);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-cart:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 22px -2px rgba(170, 103, 93, 0.45);
+            background: linear-gradient(135deg, #cf8f84 0%, #b57167 100%);
+        }
+
+        .btn-cart:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .btn-fav {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1.5px solid #ebdcd3;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            color: #7d6860;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-fav:hover {
+            border-color: #d6b5a8;
+            background: #fdf6f0;
+            color: #a86960;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="mobile-container">
+
+        <header class="mobile-header">
+            <button class="header-btn" title="Geri">←</button>
+            <div class="brand-title">M·A·C COSMETICS</div>
+            <div class="header-actions">
+                <button class="header-btn" title="Paylaş">↗</button>
+                <button class="header-btn" title="Sepet">🛍️</button>
+            </div>
+        </header>
+
+        <section class="product-media">
+            <span class="badge-discount">%28 İNDİRİM</span>
+            <span class="badge-shipping">⚡ KARGO BEDAVA</span>
+            <div class="badge-rating">★ 4.9 <span style="color:#9e8a82; font-weight:500;">(2.4k)</span></div>
+
+            <img src="mac_lipstick.webp" alt="M·A·C Matte Lipstick Velvet Teddy" class="product-image">
+        </section>
+
+        <section class="product-body">
+            
+            <div class="collection-tag">RETRO MATTE LIPSTICK</div>
+            <h1 class="product-title">M·A·C Mat Ruj — Velvet Teddy</h1>
+            <p class="product-tagline">İkonik sıcak nude tonu, ipeksi mat bitiş ve gün boyu konfor sağlayan kremsi nemlendirici formül.</p>
+
+            <div class="price-card">
+                <span class="current-price">849 ₺</span>
+                <span class="old-price">1.180 ₺</span>
+                <span class="saving-tag">331 ₺ Kazanç</span>
+            </div>
+
+            <div class="section-label">
+                <span>Boyut Seçimi</span>
+                <span class="section-sublabel">Standart Boy</span>
+            </div>
+            <div class="size-chip-container">
+                <input type="radio" name="size" id="size1" class="chip-input size-input" checked>
+                <label for="size1" class="size-chip">3.0 g (Standart)</label>
+
+                <input type="radio" name="size" id="size2" class="chip-input size-input">
+                <label for="size2" class="size-chip">1.8 g (Mini Boy)</label>
+
+                <input type="radio" name="size" id="size3" class="chip-input size-input">
+                <label for="size3" class="size-chip">Özel 2'li Nude Set</label>
+            </div>
+
+            <div class="section-label">
+                <span>Ton / Renk Seçimi</span>
+                <span class="section-sublabel">Velvet Teddy (Sıcak Nude)</span>
+            </div>
+            <div class="chip-container">
+                <input type="radio" name="shade" id="shade1" class="chip-input" checked>
+                <label for="shade1" class="chip">
+                    <span class="chip-color-dot" style="background-color: #b07d72;"></span>
+                    Velvet Teddy
+                </label>
+
+                <input type="radio" name="shade" id="shade2" class="chip-input">
+                <label for="shade2" class="chip">
+                    <span class="chip-color-dot" style="background-color: #b78a82;"></span>
+                    Kinda Sexy
+                </label>
+
+                <input type="radio" name="shade" id="shade3" class="chip-input">
+                <label for="shade3" class="chip">
+                    <span class="chip-color-dot" style="background-color: #a46c64;"></span>
+                    Taupe
+                </label>
+
+                <input type="radio" name="shade" id="shade4" class="chip-input">
+                <label for="shade4" class="chip">
+                    <span class="chip-color-dot" style="background-color: #c29288;"></span>
+                    Honeylove
+                </label>
+
+                <input type="radio" name="shade" id="shade5" class="chip-input">
+                <label for="shade5" class="chip">
+                    <span class="chip-color-dot" style="background-color: #9c6e68;"></span>
+                    Whirl
+                </label>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon">⏳</div>
+                    <div class="feature-title">10 Saat Kalıcı</div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">💧</div>
+                    <div class="feature-title">Kremsi Mat Bitiş</div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🌿</div>
+                    <div class="feature-title">Hafif Doku</div>
+                </div>
+            </div>
+
+            <div class="shipping-banner">
+                <span style="font-size: 17px;">📦</span>
+                <div>
+                    <div><strong>Bugün Kargoda!</strong> 16:00'a kadar sipariş verirseniz bugün gönderilir.</div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="bottom-action-bar">
+            <div class="bar-price-col">
+                <span class="bar-price-label">Toplam Tutar</span>
+                <span class="bar-price-value">849 ₺</span>
+                <span class="bar-price-tax">Ücretsiz Kargo Dahil</span>
+            </div>
+            <div class="bar-btn-group">
+                <button class="btn-fav" title="Favorilere Ekle">♡</button>
+                <button class="btn-cart">
+                    <span>🛍️</span>
+                    <span>Sepete Ekle</span>
+                </button>
+            </div>
+        </footer>
+
+    </main>
+
+</body>
+</html>
