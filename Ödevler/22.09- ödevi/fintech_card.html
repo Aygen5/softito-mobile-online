@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fintech Varlık Kartı - Aygen YILDIRIM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fff7ed 0%, #fdf2f8 50%, #ffedd5 100%);
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+       
+        .ambient-glow-1 {
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251, 146, 60, 0.35) 0%, rgba(251, 146, 60, 0) 70%);
+            top: 10%;
+            left: 15%;
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(244, 114, 182, 0.4) 0%, rgba(244, 114, 182, 0) 70%);
+            bottom: 10%;
+            right: 15%;
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ambient-glow-3 {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(253, 186, 116, 0.4) 0%, rgba(253, 186, 116, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(45px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 430px;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 32px;
+            border: 1.5px solid rgba(255, 255, 255, 0.95);
+            padding: 32px 28px;
+            box-shadow: 
+                0 20px 40px -15px rgba(251, 146, 60, 0.18),
+                0 12px 28px -10px rgba(244, 114, 182, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+       
+        .card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 
+                0 32px 60px -18px rgba(244, 63, 94, 0.28),
+                0 22px 42px -12px rgba(249, 115, 22, 0.25),
+                0 0 35px rgba(255, 182, 193, 0.4),
+                inset 0 1px 3px rgba(255, 255, 255, 1);
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        
+        .avatar-box {
+            position: relative;
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #fb7185 0%, #f43f5e 45%, #fb923c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px -4px rgba(244, 63, 94, 0.4);
+            border: 2px solid #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .avatar-box {
+            transform: rotate(4deg) scale(1.05);
+        }
+
+        .avatar-text {
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        
+        .status-dot {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 14px;
+            height: 14px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            border: 2.5px solid #ffffff;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+        }
+
+        .user-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .user-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: #4a221b; /* Koyu sıcak ton */
+            letter-spacing: -0.3px;
+        }
+
+        .user-handle {
+            font-size: 13px;
+            font-weight: 600;
+            color: #a26558; /* Sıcak gül kurusu ton */
+        }
+
+     
+        .badge-pro {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ea580c;
+            background: rgba(254, 215, 170, 0.45);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1.5px solid rgba(251, 146, 60, 0.35);
+            box-shadow: 0 2px 8px rgba(251, 146, 60, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .badge-pro:hover {
+            background: rgba(254, 215, 170, 0.75);
+            transform: scale(1.04);
+        }
+
+        
+        .balance-section {
+            margin-bottom: 26px;
+        }
+
+        .balance-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #a26558;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .balance-value {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #e11d48 0%, #f97316 70%, #fb923c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .growth-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #16a34a;
+        }
+
+        .growth-badge {
+            background: rgba(220, 252, 231, 0.85);
+            padding: 3px 8px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid rgba(187, 247, 208, 0.9);
+        }
+
+        .growth-text {
+            color: #a26558;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        
+        .stats-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 228, 214, 0.9);
+            padding: 16px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 24px;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), 0 6px 16px rgba(251, 146, 60, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(251, 146, 60, 0.4);
+            box-shadow: 0 10px 22px rgba(251, 146, 60, 0.12);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 15%;
+            height: 70%;
+            width: 1px;
+            background: rgba(251, 146, 60, 0.2);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #a26558;
+        }
+
+        .stat-value {
+            font-size: 17px;
+            font-weight: 800;
+            color: #4a221b;
+        }
+
+        .stat-value.success {
+            color: #16a34a;
+        }
+
+        .stat-value.tier {
+            background: linear-gradient(135deg, #ea580c 0%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        
+        .actions-group {
+            display: flex;
+            gap: 14px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 14.5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: none;
+            outline: none;
+        }
+
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #fb7185 0%, #f43f5e 40%, #fb923c 100%);
+            color: #ffffff;
+            box-shadow: 
+                0 10px 25px -4px rgba(244, 63, 94, 0.45),
+                0 4px 12px rgba(251, 146, 60, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 16px 32px -6px rgba(244, 63, 94, 0.6),
+                0 6px 18px rgba(251, 146, 60, 0.4);
+            filter: brightness(1.04);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            color: #4a221b;
+            border: 1.5px solid rgba(251, 146, 60, 0.28);
+            box-shadow: 0 4px 14px rgba(251, 146, 60, 0.08);
+        }
+
+        .btn-secondary:hover {
+            background: #ffffff;
+            border-color: rgba(244, 63, 94, 0.45);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 22px rgba(244, 114, 182, 0.22);
+            color: #ea580c;
+        }
+
+        .btn-secondary:active {
+            transform: translateY(1px) scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="ambient-glow-3"></div>
+
+    
+    <div class="card">
+        
+        
+        <div class="card-header">
+            <div class="user-profile">
+                <div class="avatar-box">
+                    <span class="avatar-text">AY</span>
+                    <span class="status-dot"></span>
+                </div>
+                <div class="user-meta">
+                    <h2 class="user-name">Aygen YILDIRIM</h2>
+                    <span class="user-handle">@aygen</span>
+                </div>
+            </div>
+            <div class="badge-pro">
+                PRO ARCHITECT
+            </div>
+        </div>
+
+        
+        <div class="balance-section">
+            <p class="balance-label">TOPLAM VARLIK DEĞERİ</p>
+            <h1 class="balance-value">₺ 284,500.00</h1>
+            <div class="growth-indicator">
+                <span class="growth-badge">↗ +%24.8</span>
+                <span class="growth-text">bu ay</span>
+            </div>
+        </div>
+
+        
+        <div class="stats-card">
+            <div class="stat-item">
+                <span class="stat-label">İşlem</span>
+                <span class="stat-value">128</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Başarı</span>
+                <span class="stat-value success">%99.4</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Seviye</span>
+                <span class="stat-value tier">Tier 1</span>
+            </div>
+        </div>
+
+       
+        <div class="actions-group">
+            <button class="btn btn-primary">
+                <span>⚡</span>
+                <span>Varlık Aktar</span>
+            </button>
+            <button class="btn btn-secondary">
+                <span>📊</span>
+                <span>Detaylar</span>
+            </button>
+        </div>
+
+    </div>
+
+</body>
+</html>
