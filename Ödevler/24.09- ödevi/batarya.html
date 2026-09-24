@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS İLK DERSS</title>
+</head>
+
+<body>
+
+    <script>
+
+        //  Şarj süresi tahmin (dakika cinsinden)
+        /*
+        const sarjSuresiniHesapla = (mevcut, hedef, bataryaKW, istasyonKW) => {
+
+            if (mevcut >= hedef) {
+                return "İşlem iptal: Hedef yüzde, mevcut şarjdan büyük olmalıdır.";
+            }
+            if (mevcut < 0 || hedef > 100) {
+                return "Hata: Yüzdelik değerler 0 ile 100 arasında olmalıdır.";
+            }
+
+            if (istasyonKW <= 0 || bataryaKW <= 0) {
+                return "Hata: İstasyon gücü ve batarya kapasitesi 0'dan büyük olmalıdır.";
+            }
+
+            const doldurulacakYuzde = hedef - mevcut;
+            const gerekenEnerji = bataryaKW * (doldurulacakYuzde / 100);
+            const sureSaat = gerekenEnerji / istasyonKW;
+            const sureDakika = Math.round(sureSaat * 60);
+
+            return `Şarj işlemi başlatılabilir. Tahmini süre: ${sureDakika} dakika.`;
+        };
+
+        console.log(sarjSuresiniHesapla(80, 50, 88.5, 50));
+        console.log(sarjSuresiniHesapla(20, 80, 88.5, 50));
+        */
+
+
+
+        
+
+
+        // Gece/Gündüz Tarifeli Şarj Hesaplayıcı
+
+        const sarjHesapla = (mevcut, hedef, bataryaKW, istasyonKW, islemSaati) => {
+
+            if (mevcut >= hedef) {
+                return "İşlem iptal: Hedef yüzde, mevcut şarjdan büyük olmalıdır.";
+            }
+            if (mevcut < 0 || hedef > 100) {
+                return "Hata: Yüzdelik değerler 0 ile 100 arasında olmalıdır.";
+            }
+            if (istasyonKW <= 0 || bataryaKW <= 0) {
+                return "Hata: İstasyon gücü ve batarya kapasitesi 0'dan büyük olmalıdır.";
+            }
+            if (islemSaati < 0 || islemSaati > 23) {
+                return "Hata: Lütfen 0 ile 23 arasında geçerli bir saat giriniz.";
+            }
+
+           
+            const doldurulacakYuzde = hedef - mevcut;
+            const gerekenEnerji = bataryaKW * (doldurulacakYuzde / 100);
+
+            const sureSaat = gerekenEnerji / istasyonKW;
+            const sureDakika = Math.round(sureSaat * 60);
+
+           
+            let tarifeTuru = "";
+
+            if (islemSaati >= 22 || islemSaati < 6) {
+                birimFiyat = 5;
+                tarifeTuru = "Gece Tarifesi (İndirimli)";
+            } else {
+                birimFiyat = 10;
+                tarifeTuru = "Gündüz Tarifesi (Standart)";
+            }
+
+            const toplamMaliyet = Math.round(gerekenEnerji * birimFiyat);
+
+            return `Tarife: ${tarifeTuru}
+    Gereken Enerji: ${gerekenEnerji.toFixed(1)} kW
+    Tahmini Süre: ${sureDakika} dakika
+    Toplam Tutar: ${toplamMaliyet} ₺`;
+        };
+
+
+        console.log("Öğlen Şarjı:");
+        console.log(sarjHesapla(20, 80, 88.5, 50, 14));
+
+        
+        console.log("\nGece Şarjı:");
+        console.log(sarjHesapla(20, 80, 88.5, 50, 23));
+
+       
+        console.log(sarjHesapla(20, 80, 88.5, 50, 25));
+
+
+    </script>
+
+</body>
+
+</html>
