@@ -67,7 +67,8 @@
             const sureSaat = gerekenEnerji / istasyonKW;
             const sureDakika = Math.round(sureSaat * 60);
 
-           
+
+            let birimFiyat = 0;
             let tarifeTuru = "";
 
             if (islemSaati >= 22 || islemSaati < 6) {
@@ -80,23 +81,20 @@
 
             const toplamMaliyet = Math.round(gerekenEnerji * birimFiyat);
 
-            return `Tarife: ${tarifeTuru}
-    Gereken Enerji: ${gerekenEnerji.toFixed(1)} kW
-    Tahmini Süre: ${sureDakika} dakika
-    Toplam Tutar: ${toplamMaliyet} ₺`;
+            return 
+            `Tarife: ${tarifeTuru}
+            Gereken Enerji: ${gerekenEnerji.toFixed(1)} kW
+            Tahmini Süre: ${sureDakika} dakika
+            Toplam Tutar: ${toplamMaliyet}₺`;
         };
-
 
         console.log("Öğlen Şarjı:");
         console.log(sarjHesapla(20, 80, 88.5, 50, 14));
 
-        
         console.log("\nGece Şarjı:");
         console.log(sarjHesapla(20, 80, 88.5, 50, 23));
 
-       
         console.log(sarjHesapla(20, 80, 88.5, 50, 25));
-
 
     </script>
 
