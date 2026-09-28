@@ -571,6 +571,8 @@
             // Benzersiz ID Üretme Mantığı:
             // Eğer dizide ürün varsa, var olan ID'lerin en büyüğünü bulup (Math.max) 1 ekliyoruz.
             // Dizi boşsa ilk ID'ye 1 veriyoruz. (Spread operatörü ... ile id dizisini açtık)
+
+            //map: Array'deki her elemanı gezer. siparişlerin sadece ID'sini alıyor.
             const newId = orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1;
 
             // Yeni sipariş nesnemizi oluşturuyoruz
@@ -579,7 +581,7 @@
                 name: name,
                 category: category,
                 price: price
-            };
+            };       
 
             // .push() metodu: Yeni siparişi dizinin en sonuna ekler
             orders.push(newOrder);
