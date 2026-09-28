@@ -220,11 +220,114 @@ class KlinikYoneticisi {
       }
     }
     print("----------------------------------------------------------------");
-
   }
-
 }
 
- void main() {
-    print("Klinik yönetim sistemi başlatılıyor...");
-  }
+void main() {
+  print("Klinik yönetim sistemi başlatılıyor...");
+
+  final yonetici = KlinikYoneticisi(subeAdi: "Softito Bağcılar Şubesi");
+
+  //danışanları oluşturalım
+  final d1 = Danisan(
+    id: "DAN-101",
+    adSoyad: "Ahmet Yılmaz",
+    telefon: "0555 555 55 55",
+    vipUyeMi: true,
+    alerjiler: ["Retinol,Aspirin"],
+    ozelCiltNotu: "Cilt bariyeri hassas",
+  );
+  final d2 = Danisan(
+    id: "DAN-102",
+    adSoyad: "Ahmet Yılan",
+    telefon: "0555 555 55 55",
+    vipUyeMi: false,
+    alerjiler: [],
+  );
+  final d3 = Danisan(
+    id: "DAN-103",
+    adSoyad: "Mehmet Yılmaz",
+    telefon: "0555 555 55 55",
+    vipUyeMi: true,
+    alerjiler: ["Retinol,Aspirin"],
+  );
+  final d4 = Danisan(
+    id: "DAN-104",
+    adSoyad: "Ahmet Mehmet Yılmaz",
+    telefon: "0555 555 55 55",
+    vipUyeMi: true,
+    alerjiler: [],
+    ozelCiltNotu: "Cilt bariyeri hassas",
+  );
+
+  yonetici.danisanKaydet(d1);
+  yonetici.danisanKaydet(d2);
+  yonetici.danisanKaydet(d3);
+  yonetici.danisanKaydet(d4);
+
+  print("Danışan güvenlik kontrolü");
+  print(d1.bilgiOzeti);
+  print(d2.bilgiOzeti);
+  print("----------------------------------");
+
+  // randevular oluşturuluyor
+  final seans1 = SeansKaydi(
+    seansKodu: "SNS-2026-1",
+    danisan: d1,
+    kategori: HizmetKategorisi.Lipo,
+    islemAdi: "Lipo gerisini bilmiyorum",
+    birimFiyat: 6500.0,
+    seansSayisi: 2,
+    indirimOrani: 5.0,
+    sorumluUzman: "Sümeyye Arab",
+  );
+  final seans2 = SeansKaydi(
+    seansKodu: "SNS-2026-2",
+    danisan: d2,
+    kategori: HizmetKategorisi.ciltYenileme,
+    islemAdi: "Siverex ile tyüz temizleme",
+    birimFiyat: 2500.0,
+    seansSayisi: 5,
+    indirimOrani: 15.0,
+    sorumluUzman: null,
+  );
+  final seans3 = SeansKaydi(
+    seansKodu: "SNS-2026-3",
+    danisan: d3,
+    kategori: HizmetKategorisi.lazerEpilasyon,
+    islemAdi: "Tüm Vücut",
+    birimFiyat: 25000.0,
+    seansSayisi: 15,
+    indirimOrani: 0.0,
+    sorumluUzman: "Tuba Aydın",
+  );
+  final seans4 = SeansKaydi(
+    seansKodu: "SNS-2026-4",
+    danisan: d4,
+    kategori: HizmetKategorisi.medikalEstetik,
+    islemAdi: "Burun Estetiği",
+    birimFiyat: 1500.0,
+    seansSayisi: 3,
+    sorumluUzman: "Alaaddin Odabaşı",
+  );
+  yonetici.randevuOlustur(seans1);
+  yonetici.randevuOlustur(seans2);
+  yonetici.randevuOlustur(seans3);
+  yonetici.randevuOlustur(seans4);
+  print("Seanslar Gönderiliyor");
+
+  //seans 1 başarıyla tamamlanıyor (kredi kartı ile ödeme);
+  yonetici.seansiTamamla(
+    seansKodu: "SNS-2026-1",
+    odeme: OdemeYontemi.krediKarti,
+  );
+  //seans 2 başarıyla tamamlanıyor (nakit ödeme);
+  yonetici.seansiTamamla(seansKodu: "SNS-2026-2", odeme: OdemeYontemi.nakit);
+  //seans 4 iptal ediliyor
+  yonetici.seansiIptalEt(
+    "SNS-2026-04",
+    iptalNedeni: "Danışanın şehir dışından tanıdığı geldiği için gelemedi",
+  );
+
+  yonetici.gunSonuRaporuYazdir();
+}
