@@ -3,15 +3,12 @@
 // ============================================================================
 // Bu dosyada, Dart programlama dilinin temel yapı taşlarını göreceğiz.
 // Enum'lar, sınıflar (class), nesneler (object), fonksiyonlar ve koleksiyonlar
-// (List, Map, Set) gibi kavramların ne işe yaradığını, nasıl kullanıldığını
-// sanki programlamaya yeni başlıyormuşsunuz gibi adım adım açıklayacağım.
-// Lütfen arkanıza yaslanın ve her satırı dikkatlice okuyun. Başlıyoruz! 😊
+// (List, Map, Set) gibi kavramların ne işe yaradığını, nasıl kullanıldığını göreceğiz.
 // ============================================================================
 
 // 1. ENUMERATION (ENUM) NEDİR?
-// Enum'lar (Numaralandırmalar), sadece bizim belirlediğimiz seçeneklerden birini
-// alabilen özel veri tipleridir. Bu sayede yazım hatalarının (örneğin 'lazer' yerine
-// 'layzer' yazmak gibi) önüne geçeriz. Buna "Derleme Zamanı Güvenliği" denir.
+// Enum'lar (Numaralandırmalar), sadece bizim belirlediğimiz seçeneklerden birini alabilen özel veri tipleridir. Bu sayede yazım hatalarının (örneğin 'lazer' yerine 'layzer' yazmak gibi) önüne geçeriz. 
+//Buna "Derleme Zamanı Güvenliği" denir.
 
 // HizmetKategorisi adında bir enum oluşturuyoruz.
 // Sadece bu 4 seçenekten biri seçilebilir. Başka bir şey seçilemez.
@@ -43,8 +40,7 @@ enum OdemeYontemi {
 
 // ============================================================================
 // 2. SINIFLAR (CLASSES) VE NESNE YÖNELİMLİ PROGRAMLAMA (OOP)
-// Sınıflar, gerçek dünyadaki nesneleri bilgisayar ortamına aktarmak için kullandığımız
-// şablonlardır. Örneğin bir "Danışan" (Müşteri) şablonu oluşturacağız.
+// Sınıflar, gerçek dünyadaki nesneleri bilgisayar ortamına aktarmak için kullandığımız şablonlardır. Örneğin bir "Danışan" (Müşteri) şablonu oluşturacağız.
 // ============================================================================
 
 // Danışan (müşteri) Modeli
@@ -155,22 +151,19 @@ class SeansKaydi {
 
 // ============================================================================
 // 3. YÖNETİM SERVİSİ (Sistem Mantığı)
-// Bütün bu oluşturduğumuz şablonları (sınıfları) bir araya getirip yönetecek
-// olan bir "Beyin" (Yönetici) sınıfı tasarlıyoruz.
+// Bütün bu oluşturduğumuz şablonları (sınıfları) bir araya getirip yönetecek olan bir "Beyin" (Yönetici) sınıfı tasarlıyoruz.
 // ============================================================================
 
 class KlinikYoneticisi {
   final String subeAdi; // Hangi şube? (Örn: Softito Bağcılar Şubesi)
   
   // private ('_') (Gizli) Değişkenler:
-  // Bir değişken isminin başına alt çizgi (_) koyarsak, bu değişkene sadece bu
-  // sınıfın içinden erişilebilir. Dışarıdan kimse doğrudan bu listeyi kurcalayamaz.
+  // Bir değişken isminin başına alt çizgi (_) koyarsak, bu değişkene sadece bu sınıfın içinden erişilebilir. Dışarıdan kimse doğrudan bu listeyi kurcalayamaz.
   
   // _seanslar: Tüm randevuların tutulduğu gizli bir liste (List).
   final List<SeansKaydi> _seanslar = [];
   
-  // _danisanRehberi: Danışanların ID'si ile (String) danışanın kendi bilgilerini (Danisan)
-  // eşleştiren bir Sözlük / Harita (Map). Tıpkı telefon rehberi gibi çalışır.
+  // _danisanRehberi: Danışanların ID'si ile (String) danışanın kendi bilgilerini (Danisan) eşleştiren bir Sözlük / Harita (Map). Tıpkı telefon rehberi gibi çalışır.
   final Map<String, Danisan> _danisanRehberi = {};
 
   KlinikYoneticisi({required this.subeAdi});
@@ -232,8 +225,7 @@ class KlinikYoneticisi {
 
   // ============================================================================
   // 4. İLERİ DÜZEY FONKSİYONEL PROGRAMLAMA (Where, Fold, Map)
-  // Burası en havalı kısım! Listeler üzerinde çok kolay filtreleme ve matematik
-  // işlemleri yapmamızı sağlayan modern kodlama yöntemleri göreceğiz.
+  // Burası en havalı kısım! Listeler üzerinde çok kolay filtreleme ve matematik işlemleri yapmamızı sağlayan modern kodlama yöntemleri göreceğiz.
   // ============================================================================
 
   // Toplam Tahsil Edilen Ciro (Sadece tamamlanan ve parası alınan seanslar)
